@@ -1,0 +1,130 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<!-- Footer style -->
+		<style>
+			html {
+  				position: relative;
+  				min-height: 100%;
+			}
+			body {
+				/* Margin bottom by footer height */
+				margin-bottom: 60px;
+			}
+			.footer {
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				/* Set the fixed height of the footer here */
+				height: 60px;
+				background-color: #AFEEEE;
+				margin-top: 10px;
+			}
+			body > .container {
+				padding: 60px 15px 0;
+			}
+			.container .text-muted {
+				margin: 20px 0;
+			}
+			.footer > .container {
+				padding-right: 15px;
+				padding-left: 15px;
+			}
+		</style>
+		<title>Поиск в корпусе Quora question pairs</title>
+	</head>
+	<body>
+		<!-- Header -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/">Quora questions</a>
+				</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="inactive"><a href="/">Поискать</a></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+		</nav>
+		<div class="container theme-showcase" role="main">
+
+		<!-- Call to action-->
+			<div class="jumbotron">
+				<h1>Поиск по Quora questions (ru)</h1>
+			</div>
+			<!-- Form -->
+			<form action="/">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h1 class="panel-title">Поиск</h1>
+					</div>
+                    <div class="checkbox">
+						<label><input type="checkbox" name="model" value="0">TF-IDF</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" name="model" value="1">BM25</label>
+					</div>
+					<div class="checkbox">
+  					<label><input type="checkbox" name="model" value="2" >Fasttext</label>
+					</div>
+					<div class="checkbox">
+  					<label><input type="checkbox" name="model" value="3" >ELMO</label>
+					</div>
+					<!-- Search -->
+					<div class="panel-body">
+							<p><b>Введите запрос! </b><br /><input type="text" name="query" value=""></p>
+					</div>
+					<div class="panel-body">
+							<p>Сколько документов найти?<br /><input type="number" name="n" value="10"></p>
+					</div>
+
+				</div>
+				<!-- Send -->
+				<p align="center"><input type="submit" class="btn btn-lg btn-primary" value="Отправить"></p>
+			</form>
+            <!-- Form -->
+			<form action="/">
+				<div class="panel panel-info">
+    				<div class="panel-heading">
+	    					<h1 class="panel-title">Результат поиска</h1>
+		    			</div>
+			    		<!-- About speaker -->
+				    	<div class="panel-body">
+							<div class="alert alert-success" role="alert"><b> Использованная модель: </b> {{model}} </div>
+                            <p> <b> Запрос: </b> {{query}}</p>
+							<p> <i> Релевантность: текст документа</i></p>
+							<ul id="result">
+							{% for res in result %}
+								<p> {{res}} </p>
+								{% endfor %}
+							</ul>
+							<p> Показаны первые {{n}} результатов. </p>
+					    </div>
+                </div>
+            </form>
+
+			<!-- Footer -->
+			<footer class="footer">
+				<div class="container">
+					<p class="text-muted">Анастасия Сидорова, Школа Лингвистики НИУ ВШЭ; <a href="mailto:seraslain@gmail.com">пишите!</a></p>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>
