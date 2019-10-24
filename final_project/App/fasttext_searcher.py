@@ -59,6 +59,11 @@ class FasttextSearcher:
                 self.indexed_corpora = pickle.load(f)
 
     def transform(self, query):
+        """
+        Get vector of the query
+        :param query: str
+        :return: np.array
+        """
         query = preprocessing(query)
         return lookup(query, self.model.wv)
 
@@ -68,7 +73,7 @@ class FasttextSearcher:
         relevance_dict = {}
         for _id, doc in enumerate(self.indexed_corpora):
             relevance = cos_sim(query_vector, doc)
-            if type(relevance) is np.float32:
+            if type(relevance) is np.float32: # To avoid an array of nan if something goes wrong
                 relevance_dict[_id] = relevance
 
         result = sorted(relevance_dict.items(), key=lambda x: x[1], reverse=True)
@@ -77,6 +82,7 @@ class FasttextSearcher:
 
 
 def main():
+    # Example
     from searcher import transform_results
 
     def get_dist(text1, text2, wv):

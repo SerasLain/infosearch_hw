@@ -89,8 +89,6 @@ class ELMoSearcher:
         Gets vector of query
 
         :param query: str
-        :param batcher, sentence_character_ids, elmo_sentence_input: ELMo model
-
         :return: vector of query
         """
         batcher, sentence_character_ids, elmo_sentence_input = self.model
@@ -98,8 +96,8 @@ class ELMoSearcher:
         with tf.Session() as sess:
             sess.run(tf.global_variables_initializer())
             vector = crop_vec(get_elmo_vectors(sess, q, batcher,
-                                                    sentence_character_ids,
-                                                    elmo_sentence_input)[0], q[0])
+                                               sentence_character_ids,
+                                               elmo_sentence_input)[0], q[0])
         return vector
 
     def search(self, query):
@@ -107,9 +105,6 @@ class ELMoSearcher:
         Search query in corpus
 
         :param: query: str
-        :param batcher, sentence_character_ids, elmo_sentence_input: ELMo model
-        :param indexed: np.array, matrix of indexed corpus
-
         :return: list, sorted results
         """
         log.info("Searching...")
@@ -127,7 +122,6 @@ class ELMoSearcher:
         """
         Indexing corpus
         :param cleaned: list if lists of str, tokenized documents from the corpus
-        :param batcher, sentence_character_ids, elmo_sentence_input: ELMo model
 
         :return: matrix of document vectors
         """

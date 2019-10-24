@@ -74,17 +74,18 @@
 					<div class="panel-heading">
 						<h1 class="panel-title">Поиск</h1>
 					</div>
-                    <div class="checkbox">
-						<label><input type="checkbox" name="model" value="0">TF-IDF</label>
+
+                    <div class="radio">
+  						<label><input type="radio" name="model" value="0" checked>TF-IDF</label>
 					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" name="model" value="1">BM25</label>
+					<div class="radio">
+  						<label><input type="radio" name="model" value="1">BM25</label>
 					</div>
-					<div class="checkbox">
-  					<label><input type="checkbox" name="model" value="2" >Fasttext</label>
+					<div class="radio">
+  						<label><input type="radio" name="model" value="2" >Fasttext</label>
 					</div>
-					<div class="checkbox">
-  					<label><input type="checkbox" name="model" value="3" >ELMO</label>
+					<div class="radio">
+  						<label><input type="radio" name="model" value="3" >ELMO</label>
 					</div>
 					<!-- Search -->
 					<div class="panel-body">
@@ -115,6 +116,7 @@
 								{% endfor %}
 							</ul>
 							<p> Показаны первые {{n}} результатов. </p>
+							<p> Объем корпуса - 5000 документов. </p>
 					    </div>
                 </div>
             </form>

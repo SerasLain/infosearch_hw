@@ -29,7 +29,7 @@ def get_preprocessed_data(corpus, stop=5000):
     with open(corpus, 'r', encoding='utf-8') as f:
         r = csv.reader(f)
         for line in r:
-            if line[0] == '': # skip header
+            if line[0] == '':  # skip header
                 continue
             _id, text, query, isduplicate = line
             id_to_text[_id] = text
@@ -44,9 +44,12 @@ def get_preprocessed_data(corpus, stop=5000):
 
 
 def write_idtotext(id_to_text):
+    """ Writes dictionary of texts in tab-separated .csv"""
+
     with open('Id_to_text.csv', 'a', encoding='utf-8') as f:
         for _id in id_to_text:
             f.write('\t'.join([_id, id_to_text[_id]]) + '\n')
+
 
 def main():
     cleaned, mapping = get_preprocessed_data("quora_question_pairs_rus.csv")

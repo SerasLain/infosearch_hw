@@ -15,6 +15,7 @@ logging.basicConfig(
 log = logging.getLogger('BM25 searcher')
 
 def get_bm25_index_matrix():
+    """Corpus indexing"""
     log.info("Indexing starts")
 
     with open("Lemmatized_corpus.pickle", 'rb') as f:
@@ -50,8 +51,6 @@ def get_bm25_index_matrix():
 
 
 class BM25Searcher(TfIdfSearcher):
-
-
     def __init__(self, indexing=False):
         if indexing:
             get_bm25_index_matrix()
@@ -71,11 +70,10 @@ class BM25Searcher(TfIdfSearcher):
 
 
 def main():
+    # Example
     from searcher import transform_results
     bm_searcher = BM25Searcher(indexing=False)
     res = bm_searcher.search("Я так больше не могу")
-    print(res)
-    print(transform_results(res, 5))
 
 
 if __name__ == "__main__":
