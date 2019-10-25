@@ -39,6 +39,8 @@ def transform_results(results, n):
     :param n: how many results should be presented
     :return: string of texts and relevance
     """
+    if n > 5000:
+        n = 5000
     mapping = {}
     with open("Id_to_text.csv", 'r', encoding='utf-8') as f:
         for line in f.readlines():
